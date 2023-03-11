@@ -68,13 +68,13 @@ export default class Auth {
 
   renewSession() {
     this.auth0.checkSession({}, (err, authResult) => {
-       if (authResult && authResult.accessToken && authResult.idToken) {
-         this.setSession(authResult);
-       } else if (err) {
-         this.logout();
-         console.log(err);
-         alert(`Could not get a new token (${err.error}: ${err.error_description}).`);
-       }
+      if (authResult && authResult.accessToken && authResult.idToken) {
+        this.setSession(authResult);
+      } else if (err) {
+        this.logout();
+        console.log(err);
+        alert(`Could not get a new token (${err.error}: ${err.error_description}).`);
+      }
     });
   }
 
@@ -97,7 +97,8 @@ export default class Auth {
 
   isAuthenticated() {
     // Check whether the current time is past the
-    // access token's expiry time
+    // access token's expiry time a
+    // record log details for future refrence 
     let expiresAt = this.expiresAt;
     return new Date().getTime() < expiresAt;
   }
